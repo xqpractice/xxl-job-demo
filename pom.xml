@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<name>xxl-job-demo</name>
+	<packaging>pom</packaging>
+	<groupId>com.xqcao.job</groupId>
+	<artifactId>xxl-job-demo</artifactId>
+	<version>${revision}</version>
+
+    <modules>
+        <module>xxl-job-admin</module>
+        <module>xxl-job-client</module>
+    </modules>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.5.RELEASE</version>
+    </parent>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<revision>0.0.1-RELEASE</revision>
+		<mysql.version>6.0.6</mysql.version>
+		<oracle.version>11.2.0.2.0</oracle.version>
+		<druid.version>1.1.20</druid.version>
+		<mybatis.version>2.1.0</mybatis.version>
+        <groovy.version>3.0.7</groovy.version>
+		<freemarker.version>2.3.30</freemarker.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<eureka.client.version>2.1.0.RELEASE</eureka.client.version>
+		<spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
+        <jasypt.version>3.0.3</jasypt.version>
+		<lombok.version>1.18.16</lombok.version>
+		<mapstruct.version>1.4.2.Final</mapstruct.version>
+		<mavenhrms-common-spring-boot-starter.compile.source>1.8</mavenhrms-common-spring-boot-starter.compile.source>
+
+		<hrms.redis.vrsion>1.0.0-SNAPSHOT</hrms.redis.vrsion>
+		<hrms.auth.vrsion>2.0.3-SNAPSHOT</hrms.auth.vrsion>
+		<hrms.org.version>0.9.6-SNAPSHOT</hrms.org.version>
+        <hrms.redis.version>1.0.0-SNAPSHOT</hrms.redis.version>
+		<hrms.common.vrsion>1.0.29-SNAPSHOT</hrms.common.vrsion>
+		<hrms.commonbase.version>0.2.3-SNAPSHOT</hrms.commonbase.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+            <dependency>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-bom</artifactId>
+                <version>2.0-M4-groovy-3.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.xuxueli</groupId>
+                <artifactId>xxl-job-core</artifactId>
+                <version>2.3.0</version>
+            </dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- common -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${mapstruct.version}</version>
+		</dependency>
+
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- spring cloud -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+        </dependency>
+
+		<!-- db -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+    </dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>8</source>
+					<target>8</target>
+					<annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${mapstruct.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.2.5.RELEASE</version>
+			</plugin>
+		</plugins>
+	</build>
+</project>
